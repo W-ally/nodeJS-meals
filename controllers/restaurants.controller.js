@@ -1,5 +1,6 @@
 // Models
 const { Restaurant } = require('../models/restaurants.model');
+const { Reviews} = require('../models/reviews.model')
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync');
@@ -58,6 +59,10 @@ const createReview = catchAsync(async (req, res, next) => {
     const { comment,rating,  } = req.body;
   
     const newReview = await Restaurant.create({ comment, rating});
+
+    include: [
+			{ model: Reviews,attributes: [ 'comment', 'rating']},
+					],
   
     res.status(201).json({ newReview });
   });
@@ -69,6 +74,10 @@ const updateReview = catchAsync(async (req, res, next) => {
     const { rating } = req.body;
   
     await user.update({ comment, rating });
+
+    include: [
+			{ model: Reviews,attributes: [ 'comment', 'rating']},
+					],
   
     res.status(200).json({ status: 'success' });
   });

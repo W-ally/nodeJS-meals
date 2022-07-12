@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 // Models
 const { User } = require('../models/user.model');
 const { Orders } = require('../models/orders.model');
-const { Comment } = require('../models/comment.model');
+
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync.util');
