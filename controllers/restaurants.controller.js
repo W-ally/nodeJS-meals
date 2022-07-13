@@ -60,9 +60,7 @@ const createReview = catchAsync(async (req, res, next) => {
   
     const newReview = await Restaurant.create({ comment, rating});
 
-    include: [
-			{ model: Reviews,attributes: [ 'comment', 'rating']},
-					],
+   
   
     res.status(201).json({ newReview });
   });

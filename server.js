@@ -1,5 +1,7 @@
 const { app } = require('./app');
 
+const { initModels } = require('./models/initModels');
+
 // Utils
 const { db } = require('./utils/database');
 
@@ -7,6 +9,10 @@ const { db } = require('./utils/database');
 db.authenticate()
   .then(() => console.log('Database authenticated'))
   .catch(err => console.log(err));
+
+// Establish model's relations
+initModels();
+
 
 // Sync sequelize models
 db.sync()
