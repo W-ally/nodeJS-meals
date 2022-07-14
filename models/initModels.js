@@ -1,24 +1,29 @@
 const { User } = require('./user.model');
-const { Post } = require('./post.model');
-const { Comment } = require('./comment.model');
-const { PostImg } = require('./postImg.model');
+const { Meals } = require('./meals.model');
+const { Restaurants } = require('./restaurants.model');
+const { Orders} = require('./orders.model');
+const { Reviews} = require('./reviews.model');
+
 
 const initModels = () => {
-	// 1 User <----> M Post
-	User.hasMany(Post, { foreignKey: 'userId' });
-	Post.belongsTo(User);
 
-	// 1 User <----> M Comment
-	User.hasMany(Comment, { foreignKey: 'userId' });
-	Comment.belongsTo(User);
+	User.hasMany(Orders, { foreignKey: 'userId' });
+	Orders.belongsTo(User);
 
-	// 1 Post <----> M Comment
-	Post.hasMany(Comment, { foreignKey: 'postId' });
-	Comment.belongsTo(Post);
+	User.hasMany(Reviews, { foreignKey: 'userId' });
+	Reviews.belongsTo(User);
 
-	// 1 Post <----> M PostImg
-	Post.hasMany(PostImg, { foreignKey: 'postId' });
-	PostImg.belongsTo(Post);
+
+	Restaurants.hasMany(Reviews, { foreignKey: 'userId' });
+	Reviews.belongsTo(Restaurants);
+
+	Restaurants.hasMany(Meals, { foreignKey: 'userId' });
+	Meals.belongsTo(Restaurants);
+	
+	Meals.hasOne(Orders, { foreignKey: 'postId' });
+	Orders.belongsTo(Meals);
+
+
 };
 
 module.exports = { initModels };
