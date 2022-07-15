@@ -7,7 +7,7 @@ const { Reviews} = require('./reviews.model');
 
 const initModels = () => {
 
-	User.hasMany(Orders, { foreignKey: 'userId' });
+	User.hasMany(Orders, { foreignKey: 'mealId' });
 	Orders.belongsTo(User);
 
 	User.hasMany(Reviews, { foreignKey: 'userId' });
@@ -17,10 +17,10 @@ const initModels = () => {
 	Restaurants.hasMany(Reviews, { foreignKey: 'userId' });
 	Reviews.belongsTo(Restaurants);
 
-	Restaurants.hasMany(Meals, { foreignKey: 'userId' });
+	Restaurants.hasMany(Meals, { foreignKey: 'id' });
 	Meals.belongsTo(Restaurants);
 	
-	Meals.hasOne(Orders, { foreignKey: 'postId' });
+	Meals.hasOne(Orders, { foreignKey: 'userId' });
 	Orders.belongsTo(Meals);
 
 

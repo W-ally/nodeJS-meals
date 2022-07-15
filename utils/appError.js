@@ -1,6 +1,3 @@
-// 4** -> Client error -> 'error'
-// 5** -> Server error -> 'fail'
-
 class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
